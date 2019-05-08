@@ -1,4 +1,4 @@
-package com.my.yang.draghelperdemo
+package com.my.yang.draghelperdemo.refresh_head_foot_view
 
 import android.app.Activity
 import android.os.Bundle
@@ -7,13 +7,14 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.my.yang.draghelperdemo.R
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import kotlinx.android.synthetic.main.activity_main2.*
 
 class CustomHeaderActivity : Activity() {
 
-    lateinit var adapter:MyAdapter
+    lateinit var adapter: MyAdapter
 
     var dataList:ArrayList<String> = ArrayList()
 
@@ -21,7 +22,7 @@ class CustomHeaderActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
-        adapter = MyAdapter(R.layout.item_layout,dataList)
+        adapter = MyAdapter(R.layout.item_layout, dataList)
 
         for (i in 0..15){
             dataList.add("item$i")

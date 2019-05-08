@@ -1,7 +1,8 @@
-package com.my.yang.draghelperdemo
+package com.my.yang.draghelperdemo.draghelper
 
 import android.app.Activity
 import android.os.Bundle
+import com.my.yang.draghelperdemo.R
 
 class DragHelperActivity : Activity() {
 

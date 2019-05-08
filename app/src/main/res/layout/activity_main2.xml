@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomHeaderActivity">
+    tools:context=".refresh_head_foot_view.CustomHeaderActivity">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/srlView"
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.my.yang.draghelperdemo.widght.CustomHeaderView
+        <com.my.yang.draghelperdemo.refresh_head_foot_view.CustomHeaderView
             android:background="#FFFFFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <com.my.yang.draghelperdemo.widght.CustomFootView
+        <com.my.yang.draghelperdemo.refresh_head_foot_view.CustomFootView
             android:background="#FFFFFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

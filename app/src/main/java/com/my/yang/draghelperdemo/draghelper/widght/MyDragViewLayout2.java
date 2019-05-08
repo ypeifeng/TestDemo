@@ -1,4 +1,4 @@
-package com.my.yang.draghelperdemo.widght;
+package com.my.yang.draghelperdemo.draghelper.widght;
 
 import android.content.Context;
 import android.support.v4.view.ViewCompat;

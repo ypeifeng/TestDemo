@@ -1,4 +1,4 @@
-package com.my.yang.draghelperdemo.widght
+package com.my.yang.draghelperdemo.refresh_head_foot_view
 
 import android.content.Context
 import android.graphics.drawable.AnimationDrawable

@@ -1,4 +1,4 @@
-package com.my.yang.draghelperdemo;
+package com.my.yang.draghelperdemo.bean;
 
 public class TextBean {
     private String location;

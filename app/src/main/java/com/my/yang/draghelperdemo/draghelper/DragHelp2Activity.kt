@@ -1,4 +1,4 @@
-package com.my.yang.draghelperdemo
+package com.my.yang.draghelperdemo.draghelper
 
 import android.app.Activity
 import android.os.Bundle
@@ -7,9 +7,10 @@ import android.support.v7.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.my.yang.draghelperdemo.R
 import kotlinx.android.synthetic.main.activity_drag2.*
 
-class Drag2Activity : Activity() {
+class DragHelp2Activity : Activity() {
 
     lateinit var adapter: CommonAdapter
 
@@ -19,7 +20,7 @@ class Drag2Activity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drag2)
 
-        adapter = CommonAdapter(dataList,R.layout.item_layout)
+        adapter = CommonAdapter(dataList, R.layout.item_layout)
 
 //        var minTop = ConvertUtils.dp2px(100f)
 //        var height = ScreenUtils.getScreenHeight() - minTop
