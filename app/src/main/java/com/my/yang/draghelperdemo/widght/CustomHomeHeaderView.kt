@@ -7,16 +7,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import com.blankj.utilcode.util.AppUtils
 import com.my.yang.draghelperdemo.R
 import com.scwang.smartrefresh.layout.api.RefreshHeader
 import com.scwang.smartrefresh.layout.api.RefreshKernel
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.constant.RefreshState
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle
-import kotlinx.android.synthetic.main.custom_food_view.view.*
+import kotlinx.android.synthetic.main.custom_home_head_view.view.*
 
 
-class CustomFootView @JvmOverloads constructor(
+class CustomHomeHeaderView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr),RefreshHeader {
 
@@ -75,15 +76,15 @@ class CustomFootView @JvmOverloads constructor(
      */
     override fun onStartAnimator(refreshLayout: RefreshLayout, height: Int, maxDragHeight: Int) {
         Log.i("ypf_customHeadView","onStartAnimator")
-        imgPullUpView.setImageResource(R.drawable.pull_up_anim)
-        anim = imgPullUpView.drawable as AnimationDrawable?
+        imgPullDownView.setImageResource(R.drawable.pull_down_anim)
+        anim = imgPullDownView.drawable as AnimationDrawable?
         anim?.start()
     }
 
     override fun onFinish(refreshLayout: RefreshLayout, success: Boolean): Int {
         Log.i("ypf_customHeadView","onFinish")
-        imgPullUpView.setImageResource(R.drawable.pull_up_anim)
-        anim = imgPullUpView.drawable as AnimationDrawable?
+        imgPullDownView.setImageResource(R.drawable.pull_down_anim)
+        anim = imgPullDownView.drawable as AnimationDrawable?
         anim?.stop()
         return 500//延迟500毫秒之后再弹回
     }
@@ -108,11 +109,12 @@ class CustomFootView @JvmOverloads constructor(
     }
 
     override fun onMoving(isDragging: Boolean, percent: Float, offset: Int, height: Int, maxDragHeight: Int) {
-//        var percentInt = Math.floor(percent*10.toDouble()).toInt()
-//        if (percentInt in 1..8 && state==RefreshState.PullDownToRefresh){
-//            Log.i("ypf_customHeadView","percent*10:   $percentInt")
-//            imgPullUpView.setImageResource(context.resources.getIdentifier("anim$percentInt","mipmap",AppUtils.getAppPackageName()))
-//        }
+        var percentInt = Math.floor(percent*10.toDouble()).toInt()
+        percentInt = if (percentInt<1) 1 else if (percentInt>8) 8 else percentInt
+        if (percentInt in 1..8 && (state==RefreshState.PullDownToRefresh || state==RefreshState.ReleaseToRefresh)){
+            Log.i("ypf_customHeadView","percent*10:   $percentInt")
+            imgPullDownView.setImageResource(context.resources.getIdentifier("anim$percentInt","mipmap",AppUtils.getAppPackageName()))
+        }
     }
 
     override fun isSupportHorizontalDrag(): Boolean {
@@ -120,7 +122,7 @@ class CustomFootView @JvmOverloads constructor(
     }
 
     private fun initView(context: Context) {
-        LayoutInflater.from(context).inflate(R.layout.custom_food_view,this)
+        LayoutInflater.from(context).inflate(R.layout.custom_home_head_view,this)
     }
 
 

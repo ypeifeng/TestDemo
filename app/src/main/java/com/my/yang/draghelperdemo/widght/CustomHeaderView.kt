@@ -76,14 +76,14 @@ class CustomHeaderView @JvmOverloads constructor(
      */
     override fun onStartAnimator(refreshLayout: RefreshLayout, height: Int, maxDragHeight: Int) {
         Log.i("ypf_customHeadView","onStartAnimator")
-        imgPullDownView.setImageResource(R.drawable.pull_down_anim)
+        imgPullDownView.setImageResource(R.drawable.pull_up_anim)
         anim = imgPullDownView.drawable as AnimationDrawable?
         anim?.start()
     }
 
     override fun onFinish(refreshLayout: RefreshLayout, success: Boolean): Int {
         Log.i("ypf_customHeadView","onFinish")
-        imgPullDownView.setImageResource(R.drawable.pull_down_anim)
+        imgPullDownView.setImageResource(R.drawable.pull_up_anim)
         anim = imgPullDownView.drawable as AnimationDrawable?
         anim?.stop()
         return 500//延迟500毫秒之后再弹回
@@ -96,23 +96,26 @@ class CustomHeaderView @JvmOverloads constructor(
             RefreshState.None, RefreshState.PullDownToRefresh -> {
                 //"下拉开始刷新"
                 Log.i("ypf_customHeadView","onStateChanged :  下拉开始刷新")
-
+                tvPullDownView.text = "下拉开始刷新"
             }
             RefreshState.Refreshing -> {
                 Log.i("ypf_customHeadView","onStateChanged :  正在刷新")
+                tvPullDownView.text = "正在刷新"
 
             }
             RefreshState.ReleaseToRefresh -> {
                 Log.i("ypf_customHeadView","onStateChanged :  释放立即刷新")
+                tvPullDownView.text = "释放立即刷新"
             }
         }
     }
 
     override fun onMoving(isDragging: Boolean, percent: Float, offset: Int, height: Int, maxDragHeight: Int) {
-        var percentInt = Math.floor(percent*10.toDouble()).toInt()
-        if (percentInt in 1..8 && state==RefreshState.PullDownToRefresh){
+        var percentInt = Math.floor(percent*100/25.toDouble()).toInt()
+        percentInt = if (percentInt<1) 1 else if (percentInt>4) 4 else percentInt
+        if (percentInt in 1..4 && (state==RefreshState.PullDownToRefresh || state==RefreshState.ReleaseToRefresh)){
             Log.i("ypf_customHeadView","percent*10:   $percentInt")
-            imgPullDownView.setImageResource(context.resources.getIdentifier("anim$percentInt","mipmap",AppUtils.getAppPackageName()))
+            imgPullDownView.setImageResource(context.resources.getIdentifier("pull_down_anim$percentInt","mipmap",AppUtils.getAppPackageName()))
         }
     }
 
